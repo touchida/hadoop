@@ -23,6 +23,7 @@ import org.apache.hadoop.classification.InterfaceAudience;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 
 /**
  * Used for injecting faults in DFSClient and DFSOutputStream tests.
@@ -137,4 +138,10 @@ public class DataNodeFaultInjector {
    * Used as a hook to inject intercept when re-register.
    */
   public void blockUtilSendFullBlockReport() {}
+
+  /**
+   * Used as a hook to inject data pollution
+   * into an erasure coding reconstruction.
+   */
+  public void badDecoding(ByteBuffer[] outputs) {}
 }
